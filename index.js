@@ -53,7 +53,7 @@ function buildsection (ppl) {
 }
 
 function render(list) {
-    result = ""
+    let result = ""
     for (let i=0; i<list.length; i+=1) {
         result += buildsection(list[i])
     }
@@ -62,21 +62,11 @@ function render(list) {
 
 render(posts)
 
-const vg = document.getElementById("vincey1853")
-const gc = document.getElementById("gus1819")
-const jd = document.getElementById("jd1735")
-
-vg.addEventListener("dblclick", () => {
-    posts[0].likes += 1
+main.addEventListener("dblclick", e => {
+  if (e.target.classList.contains("post")) {
+    const username = e.target.id
+    const post = posts.find(p => p.username === username)
+    post.likes++
     render(posts)
-})
-
-gc.addEventListener("dblclick", () => {
-    posts[1].likes += 1
-    render(posts)
-})
-
-jd.addEventListener("dblclick", () => {
-    posts[2].likes += 1
-    render(posts)
+  }
 })
